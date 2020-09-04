@@ -187,6 +187,9 @@ window.addEventListener("passbolt.plugin.resources_share", shareResources, false
 window.addEventListener("passbolt.plugin.resource_share", async function (event) {
   const data = event.detail;
   const resourceId = Object.values(data.resourceId);
+  if (resourceId.isArray()){
+    resourceId = resourceId.join('');
+  }
   if (!event.detail || !validator.isUUID(resourceId)) {
     throw new TypeError('Invalid Appjs request. Resource share request should contain a valid resource UUID.');
   }
